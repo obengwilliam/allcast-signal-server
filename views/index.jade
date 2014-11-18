@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= Allcast
+  p Hack Around
+
+  table(border="1" width="100%")
+        tr
+            th | local video
+            th | Remote Video
+        tr
+            td
+                audio(id="localVideo" autoplay controls)
+            td
+                audio(id="remoteVideo", autoplay controls)
+        tr
+            td(align="center")
+                textarea(rows="4", cols="60" id="dataChannelSend" disabled  placeholder="This will be enabled once the channel is up")
+
+            td(align="center")
+                textarea(rows=4, cols=60 id="dataChannelReceive" disabled  placeholder="This will be enabled once the channel is up")
+        tr
+            td(align="center")
+                button(id="sendButton" disabled) | Send
+            td

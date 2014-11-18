@@ -1,0 +1,51 @@
+{
+  "name": "adapter.js",
+  "description": "A shim to insulate apps from WebRTC spec changes and prefix differences",
+  "homepage": "http://googlechrome.github.io/webrtc/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GoogleChrome/webrtc.git"
+  },
+  "authors": [
+    "The WebRTC project authors (http://www.webrtc.org/)",
+    "Jesús Leganés Combarro \"piranna\" <piranna@gmail.com>"
+  ],
+  "main": "samples/web/js/adapter.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "WebRTC",
+    "PeerConnection",
+    "RTCPeerConnection",
+    "getUserMedia",
+    "Chrome",
+    "Chromium",
+    "Firefox"
+  ],
+  "license": "BSD-3-Clause",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Gruntfile.js",
+    "index.html",
+    "package.json",
+    "samples/web/content",
+    "samples/web/css",
+    "samples/web/js/lib",
+    "samples/web/js/videopipe.js"
+  ],
+  "_release": "2da62d0800",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2da62d0800fa31ce61af0b58cc434a309427c37c"
+  },
+  "_source": "git://github.com/GoogleChrome/webrtc.git",
+  "_target": "*",
+  "_originalSource": "adapter.js",
+  "_direct": true
+}
