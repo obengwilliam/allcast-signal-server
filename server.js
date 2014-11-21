@@ -2,9 +2,12 @@ var debug= require('debug')('all-cast-signal-server');
 var express = require('express');
 var app = express();
 var config = require('./config/config');
-
+var tokenManager = require('./config/token_manager');
+var secret = require('./config/secret');
 //configurations
 require('./config/express')(app,config);
+require('./config/mongoose')(config);
+
 
 //controllers
 require('./config/controllers')(app);

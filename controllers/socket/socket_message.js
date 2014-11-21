@@ -3,6 +3,7 @@ var socket_log= require('../../lib/socket-log');
 
 
 
+
  module.exports.listen=function(io,socket){
     var log = socket_log(socket);
     socket.on('message', function (message) {
