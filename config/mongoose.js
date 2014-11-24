@@ -1,6 +1,6 @@
 var mongoose=require('mongoose');
 
-var User=require('../models/User').User;
+var User=require('../models/user').User;
 var saltHash=require('../lib/salthash');
 
 module.exports=function(config){

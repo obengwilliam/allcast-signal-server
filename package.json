@@ -18,6 +18,7 @@
     "redis": "~0.12.1",
     "bcrypt": "~0.8.0",
     "express-jwt": "~0.5.0",
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "socketio-jwt": "~2.3.5"
   }
 }

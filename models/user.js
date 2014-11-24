@@ -3,12 +3,27 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email);
+};
+
 
  var UserSchema= mongoose.Schema({
                 firstName: {type:String,required:true},
                 lastName: {type:String,required:true},
-                email: {type:String,required:true, unique:true,lowercase:true},
-                userName: {type:String,required:true,unique:true},
+                email: {
+                    type:String,
+                    required:'Email address is required',
+                    unique:true,
+                    lowercase:true,
+                    trim:true,
+                    validate: [validateEmail,'Please fill a valid email']
+
+                },
+                userName: {type:String,
+                    required:true,
+                    unique:'username already exist'},
                 password: {type:String,required:true},
                 roles: [String],
                 created: {type:Date, default:Date.now},
