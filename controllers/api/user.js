@@ -27,24 +27,24 @@ module.exports=function(app){
 
             if(username === '' || password === ''){
                 msg= "Username or password is empty";
-                return res.status(401).json(errorDetail(msg));
+                return res.status(400).json(errorDetail(msg));
             }
 
             User.findOne({userName: username}, function (err, user) {
                 if (err) {
                     console.log(err);
-                    return res.status(401).json(errorDetail(err));
+                    return res.status(400).json(errorDetail(err));
                 }
 
                 if (user === null) {
                     msg= "User does not exist";
-                    return res.status(401).json(msg);
+                    return res.status(400).json(errorDetail(msg));
                 }
 
                 user.comparePassword(password, function(isMatch) {
                     if (!isMatch) {
                         msg="Username or password is wrong";
-                        return res.status(401).json(errorDetail(msg));
+                        return res.status(400).json(errorDetail(msg));
                     }
 
                 var token = jwt.sign({id: user._id}, secret.secretToken, { expiresInMinutes: tokenManager.TOKEN_EXPIRATION });
