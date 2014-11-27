@@ -4,6 +4,7 @@ var mongoose=require('mongoose');
 
  var BroadcasterSchema= mongoose.Schema({
                 broadCastName:{type:String,required:true},
+                category:{type:String,required:true},
                 userName: {type:String,required:true},
                 created : {type:Date, default: Date.now ,required:true},
                 activity :[ {
