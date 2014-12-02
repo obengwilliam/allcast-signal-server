@@ -9,7 +9,7 @@ var mongoose=require('mongoose');
                 userName: {type:String,required:true},
                 created : {type:Date, default: Date.now ,required:true},
                 activity :[ {
-                        connect: {type:Date, default:Date.now, required:true},
+                        connected: {type:Date, default:Date.now, required:true},
                         disconnected : {type:Date}
                 }]
 

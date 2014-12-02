@@ -165,6 +165,7 @@ module.exports=function(app){
                     firstname:dbUser.firstName,
                     lastname:dbUser.lastName,
                     email:dbUser.email,
+                    token:req.token
                 };
 
 

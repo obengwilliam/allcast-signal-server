@@ -8,7 +8,6 @@ var Listerner = require('../../models/listener.js').Listener;
 
      socket.on('disconnect', function (message) {
            console.log('disconnected');
-           console.log(socket.user);
 
            // BroadCaster
            // .update(
@@ -25,6 +24,6 @@ var Listerner = require('../../models/listener.js').Listener;
 
            socket.broadcast.to(socket.room).emit('log',[">>>Initiator jux left "]);
            delete socket.room;
-           console.log(socket.user);
+           console.log(socket.user,'there is no socket user');
        });
  };

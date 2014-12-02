@@ -23,6 +23,13 @@ var server=app.listen(config.port,function(){
 //socket
 var io = require('socket.io')(server);
 
+var socketioJwt = require('socketio-jwt');
+
+
+io.set(socketioJwt.authorize({
+  secret: secret,
+  handshake: true
+}));
 
 io.on('connection', function(socket){
        // Handle 'message' messages

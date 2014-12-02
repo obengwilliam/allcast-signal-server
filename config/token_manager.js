@@ -18,6 +18,7 @@ exports.verifyToken = function (req, res, next) {
             res.send(401);
         }
         else {
+            req.token=token;
             next();
         }
 
