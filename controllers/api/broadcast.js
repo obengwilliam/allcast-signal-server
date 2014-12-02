@@ -56,6 +56,7 @@ module.exports=function(app){
                                     };
                                 return res.status(200).json(broadCastDetail);
                             }else {
+
                               return res.status(400).send(errorDetail(msg));
                             }
                         });

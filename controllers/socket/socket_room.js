@@ -31,57 +31,24 @@ module.exports.listen=function(io,socket){
        if (numClients=== 0){
            socket.join(room);
            socket.room=room;
-           BroadCaster.findOne({broadCastName:room},function(err,broadcaster){
-             //check errors
-             console.log(broadcaster,'caster');
-             if(broadcaster===null){
-
-                //could be better
-                //check if user activity already exist
-
-                 var newbroadcaster = new BroadCaster();
-                 newbroadcaster.broadCastName=room;
-                 newbroadcaster.userName = socket.user.userName;
-                 newbroadcaster.activity={
-                   broadcastName:room
-                 };
-                 newbroadcaster.save(function(err){
-                   console.log(err);
-                   if(!err){
-                      console.log('new broadcaster');
-                      socket.emit('created', room);
-
-                   }
-                 });
-
-
-
-
-
-             }
-             else if(broadcaster){
-              //check if it is the same user
-
-                console.log(broadcaster.userName, socket.user.userName);
-                //check if broacaster is our old broadcaster
-                if(broadcaster.userName==socket.user.userName){
-                  broadcaster.activity
-                  .push({
-                  connected:Date.now
-                });
-                broadcaster.save();
-
-                  socket.emit('created', room);
-                  console.log('old broadcaster');
-                }else{
-
-                socket.emit('room exist');
-                }
-             }
-           });
+           socket.emit('created', room);
 
 
        } else if (numClients=== 1) {
+           // Second client joining...
+           io.sockets.in(room).emit('join', room);
+           socket.join(room);
+           socket.room=room;
+           socket.emit('joined', room);
+
+       } else if (numClients=== 2) {
+           // Second client joining...
+           io.sockets.in(room).emit('join', room);
+           socket.join(room);
+           socket.room=room;
+           socket.emit('joined', room);
+
+       }else if (numClients=== 3) {
            // Second client joining...
            io.sockets.in(room).emit('join', room);
            socket.join(room);
