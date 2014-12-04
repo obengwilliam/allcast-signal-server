@@ -7,11 +7,11 @@ var Listerner = require('../../models/listener.js').Listener;
 module.exports.listen=function(io,socket){
      var log = socket_log(socket);
 
-     socket.on('create or join', function (room) {
+     socket.on('create or join', function (data) {
+      var room=data.room;
+      socket.user=data.user;
 
-      socket.user={
-        userName:'demo'
-      };
+      console.log(socket.user, 'jux came in');
 
       var namespace = '/';
       var socketIds=[];
@@ -29,9 +29,11 @@ module.exports.listen=function(io,socket){
        log('S --> Request to create or join room', room);
        // First client joining...
        if (numClients=== 0){
-           socket.join(room);
-           socket.room=room;
-           socket.emit('created', room);
+              socket.join(room);
+              socket.room=room;
+              socket.emit('created', room);
+
+
 
 
        } else if (numClients=== 1) {

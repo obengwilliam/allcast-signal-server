@@ -159,17 +159,22 @@ module.exports=function(app){
 
         if (user) {
             User.findOne({_id:user.id},function(err,dbUser){
+                if(dbUser===null){
+                    msg="user does not exist";
+                    return res.status(400).json(errorDetail(msg));
+                }else {
+                   var userDetail= {
+                       username:dbUser.userName,
+                       firstname:dbUser.firstName,
+                       lastname:dbUser.lastName,
+                       email:dbUser.email,
+                       token:req.token
+                   };
 
-                var userDetail= {
-                    username:dbUser.userName,
-                    firstname:dbUser.firstName,
-                    lastname:dbUser.lastName,
-                    email:dbUser.email,
-                    token:req.token
-                };
 
+                   return res.status(200).json(userDetail);
+                }
 
-                return res.status(200).json(userDetail);
             });
 
         }

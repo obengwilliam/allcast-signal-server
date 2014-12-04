@@ -8,22 +8,20 @@ var Listerner = require('../../models/listener.js').Listener;
 
      socket.on('disconnect', function (message) {
            console.log('disconnected');
+           console.log(socket.user, socket.room,'user is disconnected');
+           if(socket.user&& socket.room){
+              BroadCaster
+              .update({
+               broadCastName:socket.room,
+               userName:socket.user.username,
+               'activity.disconnected':{'$exists':false}},
+               {'$set':{'activity.0.disconnected':Date.now()}}
+               );
 
-           // BroadCaster
-           // .update(
-           //      {
-           //          userName:socket.user.userName,
-           //          broadCastName:socket.room,
-           //          activity:{$slice:-1}
-           //      },
-           //      {'$set':{'activity.disconnected':}
+              socket.broadcast.to(socket.room).emit('log',[">>>Initiator jux left "]);
+              delete socket.room;
+           }
 
-           //  },function(err){
-           //      console.log(err);
-           //  });
-
-           socket.broadcast.to(socket.room).emit('log',[">>>Initiator jux left "]);
-           delete socket.room;
            console.log(socket.user,'there is no socket user');
        });
  };

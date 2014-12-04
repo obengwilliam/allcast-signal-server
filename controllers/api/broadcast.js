@@ -103,7 +103,12 @@ module.exports=function(app){
 
     broadCastRouter.get('/',jwtmiddleware({secret: secret.secretToken}), tokenManager.verifyToken, function(req,res){
             if (req.user) {
-                return  ['joe', 'good', 'simon'];
+                Broadcaster.find({},'broadCastName category activity',function(err,docs){
+                    console.log('dont follow me',docs);
+                    return  res.status(200).json(docs);
+                });
+
+
             }
             else {
                 return res.send(401);

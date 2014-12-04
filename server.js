@@ -33,7 +33,6 @@ io.set(socketioJwt.authorize({
 
 io.on('connection', function(socket){
        // Handle 'message' messages
-
     require('./controllers/socket/socket_listening').listen(io,socket);
     require('./controllers/socket/socket_message').listen(io,socket);
     require('./controllers/socket/socket_room').listen(io,socket);
